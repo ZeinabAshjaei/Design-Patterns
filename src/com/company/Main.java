@@ -1,28 +1,29 @@
 package com.company;
-
-import com.company.momento.Editor;
-import com.company.momento.History;
-
-import java.sql.SQLOutput;
+import com.company.momentoExercise.Document;
+import com.company.momentoExercise.History;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Editor editor = new Editor();
-        History history = new History();
+        Document document = new Document();
+        com.company.momentoExercise.History history = new History();
 
-        editor.setContent("a");
-        history.push(editor.createState());
+        document.setContent("Hello");
+        history.push(document.createState());
 
-        editor.setContent("b");
-        history.push(editor.createState());
+        document.setFontName("Font 1");
+        history.push(document.createState());
 
-        editor.setContent("c");
-        editor.restore(history.pop());
-        editor.restore(history.pop());
+        document.setFontSize(10);
 
-        System.out.println(editor.getContent());
+        System.out.println(document);
+
+        document.restore(history.pop());
+        System.out.println(document);
+
+        document.restore(history.pop());
+        System.out.println(document);
 
     }
 }
