@@ -1,29 +1,20 @@
 package com.company;
-import com.company.momentoExercise.Document;
-import com.company.momentoExercise.History;
+import com.company.iterator.Iterator;
+import com.company.iterator.Product;
+import com.company.iterator.ProductCollection;
 
 public class Main {
 
     public static void main(String[] args) {
+        ProductCollection collection = new ProductCollection();
+        collection.add(new Product(1, "a"));
+        collection.add(new Product(2, "b"));
+        collection.add(new Product(3, "c"));
 
-        Document document = new Document();
-        com.company.momentoExercise.History history = new History();
-
-        document.setContent("Hello");
-        history.push(document.createState());
-
-        document.setFontName("Font 1");
-        history.push(document.createState());
-
-        document.setFontSize(10);
-
-        System.out.println(document);
-
-        document.restore(history.pop());
-        System.out.println(document);
-
-        document.restore(history.pop());
-        System.out.println(document);
-
+        Iterator iterator = collection.createIterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.current());
+            iterator.next();
+        }
     }
 }
