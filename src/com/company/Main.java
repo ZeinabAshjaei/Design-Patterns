@@ -1,28 +1,13 @@
 package com.company;
 
-import com.company.momento.Editor;
-import com.company.momento.History;
-
-import java.sql.SQLOutput;
+import com.company.strategy.ChatClient;
+import com.company.strategy.Des;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Editor editor = new Editor();
-        History history = new History();
-
-        editor.setContent("a");
-        history.push(editor.createState());
-
-        editor.setContent("b");
-        history.push(editor.createState());
-
-        editor.setContent("c");
-        editor.restore(history.pop());
-        editor.restore(history.pop());
-
-        System.out.println(editor.getContent());
-
+        ChatClient client = new ChatClient(new Des());
+        client.send("Hello World");
     }
 }
