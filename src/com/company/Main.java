@@ -1,28 +1,16 @@
 package com.company;
 
-import com.company.momento.Editor;
-import com.company.momento.History;
-
-import java.sql.SQLOutput;
+import com.company.COR.DataReaderFactory;
+import com.company.COR.DataReader;
 
 public class Main {
 
     public static void main(String[] args) {
+        DataReader reader = DataReaderFactory.getDataReaderChain();
+        reader.handle("data.numbers");
+        reader.handle("data.xls");
 
-        Editor editor = new Editor();
-        History history = new History();
-
-        editor.setContent("a");
-        history.push(editor.createState());
-
-        editor.setContent("b");
-        history.push(editor.createState());
-
-        editor.setContent("c");
-        editor.restore(history.pop());
-        editor.restore(history.pop());
-
-        System.out.println(editor.getContent());
-
+        reader.handle("data.qbw");
+        reader.handle("data.jpg");
     }
 }
